@@ -1,0 +1,137 @@
+﻿The Smart Parking Lot Rate Calculator  
+1. The Scenario  
+You are designing the billing engine for a smart, multi-level parking complex. The lot serves various 
+types of vehicles and offers dynamic pricing based on the time of day, the day of the week, and the 
+duration of the stay.  
+
+The management wants a system that is completely automated: a driver inserts their ticket upon exit, 
+and the system calculates the final fee. The complexity lies in the fact that multiple rate policies might 
+apply to a single stay, and the system must always calculate the lowest possible valid fare for the 
+customer to ensure transactional integrity and satisfaction.  
+
+2. Business Requirements  
+The Domain and Pricing Basis  
+The parking facility operates under specific constraints detailed below:  
+
+●​ Vehicle Classification: The system accommodates three distinct vehicle types: 
+Motorcycles, Cars, and Buses.  
+
+●​ Spots: Different spots accommodate different vehicles (e.g., Compact spots for Motorcycles and 
+Cars, Large for Buses).  
+
+●​ Tickets: Issued upon entry, serving as the foundational record and bearing a precise 
+timestamp of entry. 
+
+Vehicle Rate Multipliers  
+All base rates below are defined relative to the CAR rate. All other vehicle classes are subject to a 
+corresponding multiplier applied to the base rate:  
+
+ 
+
+Vehicle Type  Multiplier 
+
+Motorcycle  0.8x 
+
+Car  1.0x 
+
+Bus  2.0x 
+ 
+ 
+Note: Currency: All rates and fees in this document are expressed in USD ($). The system operates in a 
+single currency; no conversion is required. 
+ 
+ 
+ 
+ 
+
+
+
+Pricing Policies (Based on Car Rate)  
+ 
+The system must accurately implement the following active rate policies. Note that Policies 2 and 3 
+share underlying dependency on time-window validation and loyalty discount application logic, which 
+should inform the architecture for reusable components:  
+Weekdays: Defined as Monday through Friday, excluding public holidays. 
+
+1. Standard Hourly Rate with Peak Hour Surcharge: This policy applies a progressive rate based 
+on duration, incorporating time-of-day multipliers.  
+
+●​ Base Car Rate: The fee structure is established as $5.00 for the initial hour, $3.00 for the 
+subsequent second hour, and $2.00 for every hour thereafter.  
+
+●​ Peak Hour Surcharge: Hours that overlap, even partially, with designated peak periods (7:00 
+AM – 10:00 AM OR 4:00 PM – 7:00 PM on weekdays) shall incur a 1.5x multiplier applied to 
+that specific hour's calculated rate.  
+
+●​ Partial Overlap Rule: An hourly segment is considered a peak hour if any part of that segment 
+falls within a peak window. For example, an hourly block from 6:30 AM to 7:30 AM overlaps the 
+7:00 AM – 10:00 AM window and therefore incurs the 1.5x surcharge for the entire block. 
+
+●​ Calculation Protocol: Total parking duration shall be consistently rounded upward to the 
+nearest full hour. Each resulting hourly segment must be individually assessed for peak time 
+overlap, where the first hour starts exactly at the vehicle's entry time (floating block). Peak 
+window start times (7:00 AM, 4:00 PM) are inclusive, and end times (10:00 AM, 7:00 PM) 
+are exclusive. 
+
+○​ Example: Floating Hourly Block 
+○​ Scenario: A Car parks on a weekday. Entry: 6:30 AM. Exit: 8:30 AM (2 hours). Peak 
+
+Window: 7:00 AM – 10:00 AM. Hour 1 (6:30 AM to 7:30 AM) overlaps the peak and is 
+charged $7.50 ($5.00 * 1.5). Hour 2 (7:30 AM to 8:30 AM) is fully in peak and is charged 
+$4.50 ($3.00 * 1.5). Total fee is $12.00. 
+
+2. Early Bird Special: A flat rate designated for commuter traffic, subject to loyalty discounts.  
+●​ Applicability Condition: Requires vehicle entry between 6:00 AM (inclusive) and 9:00 AM 
+
+(exclusive) AND vehicle exit between 3:30 PM (inclusive) and 7:00 PM (exclusive) on the 
+same calendar day. 
+
+●​ Base Car Rate: A flat fee of $15.00.  
+●​ Loyalty Discount Application: The base rate is reduced based on the customer's 
+
+loyalty tier:  
+ 
+ 
+
+Tier  Discount 
+
+SILVER  10% 
+
+GOLD  20% 
+
+PLATINUM  30% 
+ 
+ 
+
+
+
+3. Night Owl Special: A flat rate designated for overnight parking, subject to loyalty discounts.  
+●​ Applicability Condition: Requires vehicle entry between 6:00 PM (inclusive) and 11:59:59 
+
+PM (inclusive, end of calendar day) AND vehicle exit between 5:00 AM (inclusive) and 10:00 
+AM (exclusive) on the next consecutive calendar day. 
+
+●​ Base Car Rate: A flat fee of $8.00.  
+●​ Loyalty Discount Application: Uses the identical percentage structure defined in the Early 
+
+Bird Special policy. 
+
+Conflict Resolution: Best Value Logic  
+A key functional requirement is the resolution of scenarios where a single parking session 
+satisfies the criteria for multiple simultaneous rates.  
+
+●​ Scenario: A Car customer enters on a weekday at 6:30 AM and leaves at 4:00 PM. This 
+transaction may meet the criteria for Standard Hourly and Early Bird.  
+
+●​ Mandate: The engine is required to perform an exhaustive evaluation of all valid and applicable 
+rate policies (Policies 1, 2, and 3), select the one yielding the minimum derived amount, and 
+apply that final charge.  
+
+Ambiguity Resolution Constraint  
+To maintain system integrity and ensure predictable, deterministic outcomes, all developed 
+solutions must adhere to the following behavioral constraint regarding extended parking sessions:  
+
+●​ Critical Edge Case: If a vehicle stays for more than 24 hours, both the Early Bird Special and 
+the Night Owl Special are automatically rendered invalid. The system must revert to evaluating 
+the Standard Hourly Rate exclusively. These special rates are strictly restricted to single-day or 
+consecutive overnight stays.

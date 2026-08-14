@@ -1,0 +1,186 @@
+================================================================================
+AI INTERACTION HISTORY — Smart Parking Lot Rate Calculator
+================================================================================
+Candidate   : Srikanth Dhondi
+Submission  : Sahaj Software — Full Stack Developer Coding Assignment
+Tooling     : Conversational LLM assistant (standard interactive chat).
+              No agents, no multi-step autonomous workflows, no orchestration
+              frameworks were used. Per Assignment Instructions §4.3, no
+              additional reproducible setup is therefore required beyond this
+              repository and the history recorded here.
+
+--------------------------------------------------------------------------------
+1. TRANSPARENCY STATEMENT
+--------------------------------------------------------------------------------
+This file contains the COMPLETE and UNEDITED interaction history used to design
+and build the solution, reproduced verbatim in Section 4.
+
+Passages marked [[ANNOTATION]] are post-hoc clarifications added for the
+reviewer's convenience. They explain the reasoning, verification, and ownership
+behind specific exchanges. They do not modify, reorder, or replace any part of
+the original record.
+
+All design decisions, assumptions, and trade-offs surfaced in this history are
+carried into README.md. All expected test values were hand-derived by the
+candidate before being encoded as assertions; AI-generated output was reviewed
+and verified, never accepted blindly.
+
+--------------------------------------------------------------------------------
+2. PROMPTING METHODOLOGY
+--------------------------------------------------------------------------------
+The interaction was deliberately structured around four practices:
+
+  a) Context-first
+     All assignment documents (problem statement, assignment instructions,
+     interview guide, and the assignment email) were loaded and acknowledged
+     BEFORE any code generation. A detailed candidate background was also
+     provided up front so the assistant could calibrate to a senior-engineering
+     bar.
+
+  b) Spec-driven prompting
+     Prompts reference specific spec sections, constraints, and worked examples
+     verbatim rather than paraphrased wishes. Examples:
+       - "floating hourly blocks, weekday-only peak detection, partial-overlap
+         logic, and progressive rates ($5 / $3 / $2)"  [Spec: Policy 1]
+       - "a test proving the spec's exact conflict scenario (weekday 06:30 →
+         16:00 picks Early Bird $15 over Standard $31)"  [Spec: Conflict
+         Resolution — Best Value Logic]
+
+  c) Verify-first
+     Expected fare values were hand-derived block-by-block before the
+     corresponding tests were requested. Where the assistant flagged an
+     ambiguity, the candidate made an explicit decision and documented it
+     rather than letting the AI assume silently.
+
+  d) Incremental, reviewed progression
+     One concern per exchange (domain → specials → standard → engine → docs →
+     execution). Each phase was reviewed before proceeding. The candidate
+     corrected the assistant's output where it was inconsistent (see Judgment
+     Log, item 4) and scoped out non-essential artifacts (item 6).
+
+--------------------------------------------------------------------------------
+3. PHASE INDEX
+--------------------------------------------------------------------------------
+  Phase 0  Context loading, document review, candidate background
+  Phase 1  Language selection (Python) and core domain model
+  Phase 2  Flat-rate specials — Early Bird / Night Owl + shared template
+  Phase 3  Standard Hourly — floating blocks, peak detection, progressive rates
+  Phase 4  Billing Engine — Best Value Logic + spec conflict-scenario test
+  Phase 5  Structure reconciliation and README drafting
+  Phase 6  Local execution and environment verification (Windows / Python 3.12)
+
+  (Line references into Section 4 can be added here after the transcript is
+   pasted, if desired.)
+
+--------------------------------------------------------------------------------
+4. FULL TRANSCRIPT (verbatim)
+--------------------------------------------------------------------------------
+[[PASTE THE COMPLETE RAW CONVERSATION BELOW THIS LINE. Keep every message,
+  including the candidate's short prompts, the assistant's code, the ambiguity
+  flags, and the environment/error exchanges. Insert [[ANNOTATION]] blocks at
+  the points listed in Section 5 where useful, but do not alter the original
+  text.]]
+
+
+
+
+--------------------------------------------------------------------------------
+5. JUDGMENT & OWNERSHIP LOG
+--------------------------------------------------------------------------------
+ # | Decision / Event                                  | Origin & Verification
+---+---------------------------------------------------+--------------------------------
+ 1 | Specials (Early Bird / Night Owl) apply on all    | AI flagged that the spec
+   | days, including weekends.                         | defines "Weekdays" but only
+   |                                                   | the Peak Surcharge restricts
+   |                                                   | to weekdays. Candidate
+   |                                                   | decided; documented as
+   |                                                   | README Assumption #1; locked
+   |                                                   | by test_night_owl_applies_on_
+   |                                                   | weekends.
+ 2 | Floating hourly blocks are full rounded-up hours; | Literal reading of Spec
+   | the final block extends past actual exit, so a    | Policy 1 ("first hour starts
+   | short stay overlapping a peak boundary is charged | exactly at entry time" +
+   | peak.                                             | "rounded upward"). Candidate
+   |                                                   | approved; README Assumption #2
+   |                                                   | + test_rounded_up_block_
+   |                                                   | catches_peak.
+ 3 | Holidays handled via an injectable Calendar seam  | Spec excludes public holidays
+   | defaulting to Mon–Fri (no calendar provided).     | but supplies no data.
+   |                                                   | Candidate accepted the YAGNI
+   |                                                   | trade-off; documented as an
+   |                                                   | extension point.
+ 4 | Two inconsistent project-structure snapshots were | CAUGHT BY CANDIDATE REVIEW.
+   | presented as the project evolved.                 | Candidate challenged the AI
+   |                                                   | ("you gave two"); AI
+   |                                                   | reconciled to a single
+   |                                                   | canonical tree; candidate then
+   |                                                   | verified all 26 files and all
+   |                                                   | four __init__.py markers via a
+   |                                                   | final checklist.
+ 5 | The >24h guard is implemented defensively even    | The guard is mathematically
+   | though it is unreachable under current windows.   | unreachable given the window
+   |                                                   | constraints, but the spec
+   |                                                   | mandates it explicitly.
+   |                                                   | Candidate kept it for
+   |                                                   | robustness; verified in
+   |                                                   | isolation via a test double.
+ 6 | demo.py (interactive fare preview) kept OUT of    | Candidate scoping decision:
+   | the submission.                                   | tests are the executable
+   |                                                   | specification per the
+   |                                                   | Interview Guide; no CLI/GUI.
+ 7 | Loyalty discounts do NOT apply to Standard        | Spec defines loyalty only for
+   | Hourly; vehicle multiplier applies to the total   | Policies 2 & 3. Candidate
+   | car fare.                                         | confirmed; documented as
+   |                                                   | README Assumptions #4 and #6.
+ 8 | BillingEngine returns a FareResult with a full    | Deliberate, slightly-beyond-
+   | audit trail (all policy quotes), not just the     | minimal choice for
+   | winning fare.                                     | explainability / transactional
+   |                                                   | integrity; alternative (bare
+   |                                                   | Money) considered and rejected.
+ 9 | Python chosen over TypeScript.                    | Assignment requires a
+   |                                                   | "functional and object-oriented"
+   |                                                   | language; Python stdlib +
+   |                                                   | dataclasses satisfies the
+   |                                                   | no-frameworks constraint.
+10 | Verification performed in a fresh venv on         | Candidate ran the suite locally
+   | Windows with Python 3.12.                         | (python -m pytest -v → 64
+   |                                                   | passed) to confirm the
+   |                                                   | submission is self-contained.
+
+--------------------------------------------------------------------------------
+6. PROMPT → SPEC TRACEABILITY
+--------------------------------------------------------------------------------
+ Prompt (excerpt from Section 4)                     | Spec reference                | Outcome
+-----------------------------------------------------+-----------------------------+---------------------------
+ "start with Step 1: Defining the Core Domain        | Domain & Pricing Basis;       | enums.py, models.py
+ Models & Enums."                                    | Vehicle Classification;       | (Money, TimeWindow,
+                                                     | Loyalty tiers; currency       | Vehicle, Ticket,
+                                                     | single-currency note          | ParkingSession)
+-----------------------------------------------------+-----------------------------+---------------------------
+ "generate the code for the PricingPolicy interface  | Policies 2 & 3 + note that    | base.py, flat_rate.py,
+ and the EarlyBirdPolicy / NightOwlPolicy            | they 'share underlying        | early_bird.py,
+ implementations next"                               | dependency on time-window     | night_owl.py
+                                                     | validation and loyalty        |
+                                                     | discount application logic'   |
+-----------------------------------------------------+-----------------------------+---------------------------
+ "Next up is the hard part: StandardHourlyPolicy —   | Policy 1: Standard Hourly     | standard_hourly.py,
+ floating hourly blocks, weekday-only peak           | Rate; Peak Hour Surcharge;    | peak.py, calendar.py
+ detection, partial-overlap logic, and progressive   | Partial Overlap Rule;         |
+ rates ($5 / $3 / $2)."                              | Calculation Protocol          |
+-----------------------------------------------------+-----------------------------+---------------------------
+ "build that next, along with a test proving the     | Conflict Resolution: Best     | billing_engine.py,
+ spec's exact conflict scenario (weekday 06:30 →     | Value Logic; Ambiguity        | test_billing_engine.py
+ 16:00 picks Early Bird $15 over Standard $31)"      | Resolution Constraint         |
+-----------------------------------------------------+-----------------------------+---------------------------
+ "If a vehicle stays for more than 24 hours, both    | Ambiguity Resolution          | MAX_SPECIAL_STAY guard in
+ the Early Bird Special and the Night Owl Special    | Constraint (Critical Edge     | flat_rate.py; engine
+ are automatically rendered invalid."                | Case)                         | falls back to Standard
+                                                     |                               | naturally
+-----------------------------------------------------+-----------------------------+---------------------------
+ "1. Language & Stack Selection: Python"             | Assignment email: "any        | Python 3.10+, stdlib only,
+                                                     | programming language ...      | pytest
+                                                     | which is functional and       |
+                                                     | object-oriented"              |
+================================================================================
+END OF FRONT MATTER — raw transcript follows in Section 4 above.
+================================================================================

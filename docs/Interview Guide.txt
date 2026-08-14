@@ -1,0 +1,187 @@
+﻿Inspiring Brilliance
+
+Interview Guide - Full Stack Developer
+
+
+
+Flow
+
+01 About Sahaj Software 02 Interview Process 03 What do we look for?
+
+04 Frequently Asked 05 Additional Resources
+Questions
+
+
+
+Sahaj’s core values reflect 
+the promise of trust, 
+respect, instilling curiosity, 
+and craftsmanship.
+
+About Sahaj Software
+
+
+
+Trust Respect
+A culture helmed by practices of Every individual’s views and ideas 
+open salary, unlimited leaves, profit- are valued. This gives rise to a 
+sharing, zero hierarchy, and deep-rooted respect that 
+freedom to take decisions builds a underlines everything we do.
+
+Sahaj celebrates a culture multi-dimensional trust.
+
+of openness, innovation 
+and bold outcomes driven Curiosity Craftsmanship
+
+by trust, respect, curiosity, We nurture curiosity in every form. As artisans, we are passionate in our 
+Being relentless in the pursuit of the endeavor to look at the finer nuances 
+
+and craftsmanship. why, the what and the how enables of every challenge as we craft 
+us to challenge the status quo. purpose-built solutions.
+
+Openness. Innovation. Bold outcomes.
+
+About Sahaj Software
+
+
+
+AI NATIVE STARTUPS & SCALEUPS
+
+We transform 
+businesses across a vast 
+spectrum of domains 
+with data-led strategies ENTERPRISE & SOCIAL TRANSFORMATIONS
+
+and innovations.
+
+About Sahaj Software
+
+
+
+Interview Process
+
+Step 1: 
+ Step 2: 
+ Step 3: 
+ Step 4: 
+
+Coding Assignment Code Pairing Technical Round Final Round
+You can find the coding problem Upon a successful code A successful code-pairing On successful completion of 
+statement as an attachment in review, we will pursue your round then leads to the next the technical discussion, you 
+the e-mail we sent you. Please candidature and invite you for step - the technical round. This will be meeting the 
+share the completed coding a code pairing round with one discussion focuses on Leadership team at Sahaj. 
+assignment and send it back to of our developers. While this fundamentals like databases, This discussion focuses on 
+us in a zip format within a gives us a great opportunity to architecture, systems design discovering the overall value 
+week’s time from the date you assess your skills, it also etc.  and also the projects that that you can potentially 
+had received the code. If you provides you a peek into what you had worked on in the bring to the table as a 
+have any questions or specific it feels like to be a part of past. Two developers from Sahajeevi and if Sahaj can 
+concerns, please feel free to Sahaj, working with our Sahaj will be meeting you to help you further with your 
+reach out to us anytime. people here. have this conversation. career goals.
+
+Interview Process
+
+
+
+I N N O V A T I V E
+D E C I S I V E
+
+What are we looking for?
+P A S S I O N A T E
+
+Tech aspects:
+
+• Quality of code (please refer to the Additional Resources 
+R E S P E C T F U L section at the end for more) 
+
+
+• A sound understanding of aspects like code design and 
+aesthetics, data structures, algorithms, problem solving etc. 
+
+
+S E L F - D R I V E N • Overall design
+
+• Solutioning / modelling capabilities
+
+C U R I O U S
+Do’s & Dont’s:
+
+• We are not assessing you on code required to do the input/
+output.  
+
+
+• While building a solution, it would be best if the input is 
+provided either via unit tests or an input file.
+
+
+• Avoid command line for input as it is tedious and difficult to 
+test.
+
+
+• Do not share the code in a public repository. Use a zip over 
+email or provide “sahaj-org-building” access to your private 
+repository
+
+What do we look for?
+
+
+
+Frequently Asked Questions
+
+What kind of work will I get to do at Sahaj?
+We craft purpose-built solutions by leveraging platform engineering, data engineering, and data science – think AI, ML, NLP, all the cool stuff! We also 
+offer tech advisory.
+
+Is Sahaj a services company or a product company? Will I get to work on building products?
+We are a software solutioning company. Our work differs vastly from a product company. However, we work with clients across multiple domains and 
+depending on their requirement, we either provide solutions or build products for them. Rest assured, there is never a dearth of exciting work at Sahaj!
+
+Given that there is no hierarchy in Sahaj, how does one grow here professionally?
+Continuous learning is what incites growth, and at Sahaj, there is no dearth of it. You will get opportunities to work on a wide range of projects and across 
+all of them, you will be involved closely right from requirement gathering to ideating, making decisions about overall design, working on high-quality code, 
+and ensuring that the solution is optimised for the given problem. So as far as growth is concerned, sky is the limit!
+
+Will I get any exposure of business domains?
+You bet! Understanding the business is crucial to developing a solution that works for the client. Thus, our developers spend a substantial amount of time 
+trying to understand the business and its various challenges. This may come as a surprise, but everyone is client-facing at Sahaj irrespective of one’s level 
+of experience.
+
+Frequently Asked Questions
+
+
+
+• Clean Code Handbook
+
+• Domain Driven Design
+
+• Pragmatic Programmer
+
+• Refactoring: Improving Design of Existing Code
+
+
+We think that the topics/ • Design Patterns Head First
+
+books mentioned here can 
+add tremendous value to If you wish to know more about Sahaj and it’s 
+
+work culture, here are some useful resources.
+the programming skills and 
+
+• Creation of Sahaj
+
+sensibilities of a developer. • Open Salaries? Unlimited leaves? Really?
+
+Feel free to check them out! 
+Please note, reading these is NOT a pre A sneak preview of life at Sahaj in short videos
+requisite for our interaction with you. • What is Sahaj Software all about? Here it is, 
+
+in our own words.
+
+• Sahaj Software: Challenging the status quo 
+
+Additional Resources
+
+
+
+All the very best!
+
+Code. Build. Learn. Grow.

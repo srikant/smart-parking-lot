@@ -1,0 +1,52 @@
+﻿Code Assignment: Instructions 
+Core Philosophy : At Sahaj, we prioritize design, thinking process, and engineering judgment over 
+mere functionality. We want to see how you reason - especially in a modern, AI-assisted context. 
+We are not evaluating GUI or CLI presentation skills. 
+
+1. Evaluation Criteria & Design Expectations 
+
+We look for code that is readable, maintainable, robust, and verified. 
+
+●​ Domain Modelling: Clearly separate behavior from state. Encapsulate state properly and 
+ensure objects reflect the problem domain. 
+
+●​ Design Principles: Apply SOLID principles sensibly. Use KISS and YAGNI pragmatically to 
+avoid unnecessary abstractions. 
+
+●​ Simplicity: Prefer clear, simple designs over clever ones. Make conscious, explicit trade-offs. 
+●​ Code Quality: Refactor for clarity. Ensure the intent is obvious to other developers and the 
+
+code is easy to extend. 
+
+2. Testing & Confidence 
+
+Confidence in correctness is mandatory. Submissions without it are viewed negatively. 
+
+●​ Unit Tests: Strongly encouraged wherever reasonable. 
+●​ TDD: Appreciated but not mandatory. 
+●​ Validation: If tests are omitted, you must explain how you validated the solution. 
+
+3. Technology Constraints 
+
+No heavy frameworks (Spring Boot, Django, REST APIs, DBs). Use platform-agnostic languages 
+and standard libraries only. 
+
+4. AI-Assisted Coding Policy 
+
+AI usage is encouraged, but we evaluate your judgment, validation, and ownership of the solution. 
+Transparency is mandatory. 
+
+Required Documentation: 
+
+1.​ Assumptions (README.md): Document all assumptions, design decisions, trade-offs, and 
+alternatives considered. 
+
+2.​ AI Interaction History: You must provide the full chat history or prompts used (e.g., 
+ai-chat-history.txt). 
+
+3.​ Reproducible Setup: If using complex AI workflows (e.g., agents), you must include a 
+reproducible setup. This may include: 
+
+○​ Markdown files with specific commands. 
+○​ Definitions of Skills or Agents used. 
+○​ Plans or orchestration logic required to reproduce the solution.
